@@ -1,7 +1,7 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "pod_scraper/version"
-require "pod_scraper/feed_parser"
+require "pod_scraper"
 
 Gem::Specification.new do |spec|
   spec.name          = "pod-scraper"
