@@ -1,7 +1,7 @@
 # Based off itunes scraper from https://github.com/feedjira/feedjira/blob/master/lib/feedjira/parser/itunes_rss.rb
 # Podcast Feedjira https://github.com/scour/feedjira-podcast/tree/master/lib/feedjira
 module PodScraper
-  class PodcastFeedParser
+  class Parser
     include SAXMachine
     # include Feedjira::FeedUtilities
 
@@ -14,10 +14,10 @@ module PodScraper
 
     # Title
     element :title
+    element :"itunes:subtitle", as: :itunes_subtitle
     # Description
     element :description
     element :"itunes:summary", as: :itunes_summary
-    element :"itunes:subtitle", as: :itunes_subtitle
     # Author
     element :managingEditor
     element :"itunes:author", as: :itunes_author
@@ -28,15 +28,6 @@ module PodScraper
     # Potentially useful fields
     element :"itunes:keywords", as: :itunes_keywords
     element :"itunes:type", as: :itunes_type
-
-    def self.able_to_parse?(xml)
-      %r{xmlns:itunes\s?=\s?[\"\']http://www\.itunes\.com/dtds/podcast-1\.0\.dtd[\"\']}i =~ xml # rubocop:disable Metrics/LineLength
-    end
+    element :pubDate
   end
 end
-
-# MVP
-# Title
-# Description
-# Author
-# Title Image
